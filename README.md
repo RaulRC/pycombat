@@ -1,3 +1,9 @@
-== INSTRUCTIONS == 
+# INSTRUCTIONS #
 
-Just execute go.py and enjoy!
+Just execute 
+```
+#!python
+
+go.py
+```
+ and enjoy!

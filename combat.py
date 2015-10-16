@@ -3,12 +3,22 @@
 
 print ':: RPG COMBAT MODULE v0.1 LOADED ::'
 
-NAME = 0
-INITIATIVE = 1
-HP = 2
 INFINITE = 9999
-
-OPTIONS = "---------------\n1.Add player\n2.Hit player\n3.Move player initiative\n4.Sort player's list\n5.Next round\n\n0.Exit\n---------------\n"
+ADD_PLAYER = '1.Add player\n'
+HIT_PLAYER = '2.Hit player\n'
+MOV_PLAYER = '3.Move player initiative\n'
+SOR_PLAYER = '4.Sort players list\n'
+NEXT_ROUND = '5.Next round\n'
+EXIT = '\n0.Exit\n'
+DIV =  '---------------\n'
+OPTIONS = (DIV + 
+           ADD_PLAYER + 
+           HIT_PLAYER + 
+           MOV_PLAYER + 
+           SOR_PLAYER + 
+           NEXT_ROUND + 
+           EXIT + 
+           DIV)
 
 class Player:
     def __init__(self, name='_player_', initiative=0, hp=0):
@@ -76,13 +86,16 @@ class Combat:
         self.players[player_index].hit_player(hit_points)
     
     def game_sort_players(self):
-        self.players.sort(key=lambda x: x.initiative, reverse=True)
+        answer = raw_input('Sorting players list. Are you sure? (y/n): ')
+        if answer.lower() == 'y':
+            self.players.sort(key=lambda x: x.initiative, reverse=True)
+        elif answer.lower() == 'n':
+            pass
+        else:
+            print "Taking this answer as 'no'"
 
     def start(self):
         option = INFINITE
-        player_index = 0
-        hit_points = 0
-
         while option > 0:
             self.show_game()
             print OPTIONS
@@ -110,4 +123,4 @@ class Combat:
                     self.show_game()
                     print 'Combat finished!'
             except:
-                print 'Try again, somethin happened!'
+                print 'Try again, something happened!'

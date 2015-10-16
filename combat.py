@@ -106,5 +106,8 @@ class Combat:
                 #INCREMENT ROUND
                 if option == 5:
                     self.next_round()
+                if option == 0:
+                    self.show_game()
+                    print 'Combat finished!'
             except:
                 print 'Try again, somethin happened!'
